@@ -20,3 +20,48 @@ The model classifies images as **Cat** or **Dog**.
 ---
 
 ## 📂 Project Structure
+mlops-cats-dog/
+│
+├── app/ # FastAPI inference service
+├── src/ # Training pipeline
+├── data/ # Raw dataset (DVC tracked)
+├── models/ # Saved model
+├── mlruns/ # MLflow experiment logs
+├── Dockerfile
+├── requirements.txt
+└── README.md
+
+
+---
+
+## 🧠 Model Details
+
+- Custom CNN architecture
+- Input size: 128x128
+- Optimizer: Adam
+- Loss: CrossEntropyLoss
+- Epochs: 5
+- Final Training Loss: ~0.25
+
+---
+
+## 📊 Experiment Tracking
+
+MLflow is used to track:
+- Training loss
+- Model artifacts
+- Run metadata
+
+To launch MLflow UI:
+
+```bash
+mlflow ui --backend-store-uri ./mlruns
+
+
+🔥 Run Training
+python src/train.py
+
+
+🌐 Run API
+uvicorn app.main:app --reload
+
